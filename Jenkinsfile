@@ -3,7 +3,7 @@ pipeline{
     stages{
         stage('Clone repo'){
             steps{
-                git branch: 'main', url: 'https://github.com/onkarshinde18/project.git'
+                git branch: 'main', url: 'https://github.com/onkarshinde18/cicd.git'
             }
         }
         stage('Build image'){
