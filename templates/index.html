@@ -1,258 +1,230 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Omkar | Flask App 🚀</title>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Omkar's Hotel Paradise 🍷</title>
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;600&display=swap');
 
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
     }
 
     body {
-      background: radial-gradient(circle at top left, #0f2027, #203a43, #2c5364);
-      color: #fff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .container {
-      display: flex;
-      flex-direction: row;
-      max-width: 1100px;
-      width: 100%;
-      padding: 40px;
-      background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
-      border-radius: 24px;
-      box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-      transition: transform 0.3s ease;
-    }
-
-    .container:hover {
-      transform: translateY(-5px);
-    }
-
-    .profile-photo {
-      flex: 0 0 220px;
-      margin-right: 40px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .profile-photo img {
-      width: 100%;
-      border-radius: 20px;
-      border: 4px solid #00c6ff;
-      box-shadow: 0 8px 25px rgba(0, 198, 255, 0.5);
-      transition: transform 0.4s ease;
-    }
-
-    .profile-photo img:hover {
-      transform: scale(1.05);
-    }
-
-    .content {
-      flex: 1;
+      background: #0A192F;
+      color: #FDF6E3;
+      font-family: 'Inter', sans-serif;
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      align-items: center;
+      padding: 40px 20px;
     }
 
-    .header h1 {
-      font-size: 2.4rem;
-      font-weight: 700;
-      color: #00c6ff;
-      margin-bottom: 10px;
+    header {
+      text-align: center;
+      margin-bottom: 30px;
     }
 
-    .header p {
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.6rem;
+      color: #FFD700;
+    }
+
+    header p {
       font-size: 1.1rem;
-      color: #ddd;
+      color: #FDF6E3;
+      background: #2E8B57;
+      padding: 6px 14px;
+      border-radius: 8px;
+      display: inline-block;
+      margin-top: 10px;
     }
 
     .card {
-      padding: 20px;
+      background: #112240;
       border-radius: 16px;
-      background: rgba(255, 255, 255, 0.06);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      box-shadow: inset 0 0 20px rgba(255, 255, 255, 0.05);
-      transition: background 0.3s ease;
+      padding: 30px;
+      max-width: 850px;
+      width: 100%;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
     }
 
-    .card:hover {
-      background: rgba(255, 255, 255, 0.12);
+    .banner {
+      width: 100%;
+      border-radius: 12px;
+      margin-bottom: 20px;
     }
 
-    .card h2 {
-      font-size: 1.4rem;
-      color: #00c6ff;
-      margin-bottom: 12px;
+    .hotel-info h2 {
+      font-size: 1.8rem;
+      color: #FFD700;
+      margin-bottom: 10px;
     }
 
-    .card p {
+    .hotel-info p {
       font-size: 1rem;
-      color: #eee;
       line-height: 1.6;
+      color: #FDF6E3;
+    }
+
+    .fav-dishes h3 {
+      font-size: 1.5rem;
+      color: #FFD700;
+      margin: 25px 0 15px;
+    }
+
+    .dish-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    .dish {
+      background: #2E8B57;
+      padding: 16px;
+      border-radius: 12px;
+      color: #FDF6E3;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    }
+
+    .dish h4 {
+      font-size: 1.2rem;
+      margin-bottom: 6px;
+      color: #FFD700;
     }
 
     .messages {
-      max-height: 220px;
+      background: #1C2E4A;
+      padding: 15px;
+      border-radius: 12px;
+      margin-top: 25px;
+      max-height: 200px;
       overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
     }
 
     .messages p {
-      padding: 12px;
-      background: rgba(0, 198, 255, 0.15);
-      border-radius: 12px;
-      font-size: 0.95rem;
-      animation: fadeIn 0.4s ease;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      background: #E5E7EB;
+      color: #0A192F;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 8px;
     }
 
     form {
+      margin-top: 20px;
       display: flex;
-      gap: 12px;
-      margin-top: 10px;
+      gap: 10px;
     }
 
     input[type="text"] {
       flex: 1;
-      padding: 14px;
+      padding: 12px;
       border: none;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.08);
-      color: #fff;
-      font-size: 16px;
-      transition: box-shadow 0.3s ease;
-    }
-
-    input[type="text"]:focus {
-      box-shadow: 0 0 12px #00c6ff;
-      outline: none;
+      border-radius: 8px;
+      background: #FDF6E3;
+      color: #0A192F;
+      font-size: 1rem;
     }
 
     input[type="submit"] {
-      padding: 14px 20px;
-      background: linear-gradient(135deg, #00c6ff, #0072ff);
-      color: #fff;
+      padding: 12px 20px;
+      background: #FFD700;
       border: none;
-      border-radius: 12px;
+      border-radius: 8px;
+      color: #0A192F;
+      font-weight: bold;
       cursor: pointer;
-      font-size: 16px;
-      font-weight: 600;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: background 0.3s ease;
     }
 
     input[type="submit"]:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0, 198, 255, 0.5);
-    }
-
-    @media (max-width: 900px) {
-      .container {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-      }
-
-      .profile-photo {
-        margin-right: 0;
-        margin-bottom: 20px;
-      }
-
-      form {
-        flex-direction: column;
-      }
+      background: #E6C200;
     }
   </style>
 </head>
-
 <body>
-  <div class="container">
-    <div class="profile-photo">
-      <img src="dp.png" alt="OMKAR Photo">
+  <header>
+    <h1>Omkar's Hotel Paradise 🍷</h1>
+    <p>Experience luxury dining and comfort</p>
+  </header>
+
+  <div class="card">
+
+    <div class="hotel-info">
+      <h2>Welcome to Hotel Paradise</h2>
+      <p>
+        Nestled in the heart of the city, Hotel Paradise offers a blend of modern luxury and traditional hospitality.
+        Whether you're here for a weekend getaway or a fine dining experience, we promise unforgettable moments.
+      </p>
     </div>
 
-    <div class="content">
-      <div class="header">
-        <h1>OMKAR SHINDE | DevOps Enthusiast</h1>
-        <p>Student | Aspiring Cloud & DevOps Engineer</p>
+    <div class="fav-dishes">
+      <h3>Chef's Favorite Dishes</h3>
+      <div class="dish-list">
+        <div class="dish">
+          <h4>Butter Chicken</h4>
+          <p>Rich, creamy, and perfectly spiced — a timeless classic.</p>
+        </div>
+        <div class="dish">
+          <h4>Paneer Tikka</h4>
+          <p>Char-grilled paneer cubes marinated in aromatic spices.</p>
+        </div>
+        <div class="dish">
+          <h4>Seafood Platter</h4>
+          <p>A chef’s special mix of prawns, fish, and calamari.</p>
+        </div>
+        <div class="dish">
+          <h4>Chocolate Lava Cake</h4>
+          <p>Warm, gooey chocolate center served with vanilla ice cream.</p>
+        </div>
       </div>
-
-      <div class="card">
-        <h2>About Me</h2>
-        <p>Hi, I'm <b>OMKAR</b> 👋, a student and aspiring Cloud & DevOps engineer.</p>
-        <p style="margin-top:10px;">
-          <b>Project:</b> Deployed a 2-tier Flask application (Flask + MySQL) on AWS EC2 using Docker.  
-          Managed with Docker Compose, GitHub-hosted source, and Jenkins CI/CD pipeline for automated deployment.
-        </p>
-      </div>
-
-      <div class="card messages">
-        {% for message in messages %}
-          <p>{{ message[0] }}</p>
-        {% endfor %}
-      </div>
-
-      <form id="messageForm">
-        <input type="text" name="new_message" placeholder="Type your message..." required>
-        <input type="submit" value="Send">
-      </form>
     </div>
+
+    <div class="messages">
+      {% for message in messages %}
+        <p>{{ message[0] }}</p>
+      {% endfor %}
+    </div>
+
+    <form id="messageForm">
+      <input type="text" name="new_message" placeholder="Reserve a table or leave feedback..." required/>
+      <input type="submit" value="Send"/>
+    </form>
   </div>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            $("#messageForm").on("submit", function(event) {
-                event.preventDefault();
-                let messageInput = $("input[name='new_message']");
-                let message = messageInput.val().trim();
 
-                if (message === "") {
-                    alert("Message cannot be empty!");
-                    return;
-                }
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script>
+    $(document).ready(function () {
+      $("#messageForm").on("submit", function (event) {
+        event.preventDefault();
+        let messageInput = $("input[name='new_message']");
+        let message = messageInput.val().trim();
 
-                $.ajax({
-                    url: "/submit",
-                    type: "POST",
-                    data: { new_message: message },
-                    success: function(response) {
-                        if (response && response.message) {
-                            $(".messages").append("<p>" + response.message + "</p>");
-                            messageInput.val("");
-                        }
-                    },
-                    error: function(xhr, status, error) {
-                        console.error("AJAX Error:", status, error);
-                    }
-                });
-            });
+        if (message === "") {
+          alert("Message cannot be empty!");
+          return;
+        }
+
+        $.ajax({
+          url: "/submit",
+          type: "POST",
+          data: { new_message: message },
+          success: function (response) {
+            if (response && response.message) {
+              $(".messages").append("<p>" + response.message + "</p>");
+              messageInput.val("");
+            }
+          },
+          error: function (xhr, status, error) {
+            console.error("AJAX Error:", status, error);
+          }
         });
-    </script>
+      });
+    });
+  </script>
 </body>
 </html>
